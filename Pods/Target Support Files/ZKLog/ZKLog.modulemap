@@ -1,0 +1,6 @@
+framework module ZKLog {
+  umbrella header "ZKLog-umbrella.h"
+
+  export *
+  module * { export * }
+}

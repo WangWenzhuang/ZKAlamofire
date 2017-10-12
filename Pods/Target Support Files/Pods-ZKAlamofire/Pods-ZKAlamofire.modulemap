@@ -1,0 +1,6 @@
+framework module Pods_ZKAlamofire {
+  umbrella header "Pods-ZKAlamofire-umbrella.h"
+
+  export *
+  module * { export * }
+}

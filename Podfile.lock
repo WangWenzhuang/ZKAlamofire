@@ -1,0 +1,24 @@
+PODS:
+  - Alamofire (4.5.1)
+  - SwiftyJSON (3.1.4)
+  - ZKLog (1.0)
+  - ZKProgressHUD (1.6)
+  - ZKStatusBarNotification (1.2)
+
+DEPENDENCIES:
+  - Alamofire
+  - SwiftyJSON
+  - ZKLog
+  - ZKProgressHUD
+  - ZKStatusBarNotification
+
+SPEC CHECKSUMS:
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  ZKLog: 7f89be1aee90afc58ff6a7a1ceb60d9c568dbd7d
+  ZKProgressHUD: 47cee19a85fe64d5eb75da0cc0a6a2786f692864
+  ZKStatusBarNotification: bad7b5d8acbf109f1d0508a6e1c8cd19e3625fc8
+
+PODFILE CHECKSUM: f15701fc9617221b9bfd074578487b98945185b8
+
+COCOAPODS: 1.3.1
