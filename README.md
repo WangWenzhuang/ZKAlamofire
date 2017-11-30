@@ -7,7 +7,7 @@
 ![CocoaPods](https://img.shields.io/badge/pod-v1.2-brightgreen.svg)
 ![platform](https://img.shields.io/badge/platform-iOS-brightgreen.svg)
 
-将 [Alamofire](https://github.com/Alamofire/Alamofire)、[ZKProgressHUD](https://github.com/WangWenzhuang/ZKProgressHUD)、[SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)、[ZKStatusBarNotification](https://github.com/WangWenzhuang/ZKStatusBarNotification)封装，简化网络请求代码。
+将 [Alamofire](https://github.com/Alamofire/Alamofire)、[ZKProgressHUD](https://github.com/WangWenzhuang/ZKProgressHUD)、[SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)、[ZKStatusBarNotification](https://github.com/WangWenzhuang/ZKStatusBarNotification) 封装，简化网络请求代码
 
 ## 实现功能
 
@@ -39,13 +39,15 @@ end
 
 ## 快速使用
 
+-> ZKAlamofireRequestSuccess 中的 **json** 参数为 **SwiftyJSON**；在调用 get、getWithShowHUD、post、postWithShowHUD 中的参数大多数可以不填写，如果不需要设置此参数则可以删除此参数或者传 **nil**
+
 ### 导入 `ZKAlamofire`
 
 ```swift
 import ZKAlamofire
 ```
 
-## 网络监控
+### 网络监控
 
 ```swift
 ZKAlamofire.startNetworkMonitoring()
@@ -53,4 +55,50 @@ ZKAlamofire.startNetworkMonitoring()
 
 打开网络监控之后，在使用 ZKAlamofire 请求时如果没有网络连接，会提示如下图
 
-![(img1)](https://raw.githubusercontent.com/WangWenzhuang/ZKAlamofire/master/images/error.png)
+![(img1)](https://raw.githubusercontent.com/WangWenzhuang/ZKAlamofire/master/images/error.jpg)
+
+### Get 请求
+
+不显示加载
+
+```swift
+ZKAlamofire.get("url", success: (json) in
+    // 回调代码
+}
+```
+
+显示加载
+
+```swift
+ZKAlamofire.getWithShowHUD("url", success: (json) in
+    // 回调代码
+}
+```
+
+### Post 请求
+
+不显示加载
+
+```swift
+ZKAlamofire.post("url", parameters: nil, success: (json) in
+    // 回调代码
+}
+```
+
+显示加载
+
+```swift
+ZKAlamofire.postWithShowHUD("url", parameters: nil, success: (json) in
+    // 回调代码
+}
+```
+
+### 设置全局 Header
+
+```swift
+ZKAlamofire.setGlobalHeaders(["key": "value"])
+```
+
+### 自定义 HUD 样式
+
+自定义需要引用 [ZKProgressHUD](https://github.com/WangWenzhuang/ZKProgressHUD) ，之后设置其样式即可
