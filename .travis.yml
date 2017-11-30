@@ -1,0 +1,6 @@
+osx_image: xcode8.3
+language: swift
+
+xcode_project: ZKAlamofire.xcodeproj
+xcode_scheme: ZKAlamofire
+xcode_sdk: iphonesimulator
