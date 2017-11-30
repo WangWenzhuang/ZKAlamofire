@@ -2,9 +2,9 @@
 
 # ZKProgressHUD
 
-![build](https://travis-ci.org/WangWenzhuang/ZKProgressHUD.svg?branch=master)
-![CocoaPods](https://img.shields.io/badge/pod-v1.5-brightgreen.svg)
 ![license](https://img.shields.io/badge/license-MIT-brightgreen.svg)
+![build](https://travis-ci.org/WangWenzhuang/ZKProgressHUD.svg?branch=master)
+![CocoaPods](https://img.shields.io/badge/pod-v1.6-brightgreen.svg)
 ![platform](https://img.shields.io/badge/platform-iOS-brightgreen.svg)
 
 iOS App 上极易于使用的 HUD。
@@ -22,6 +22,7 @@ iOS App 上极易于使用的 HUD。
 - [x] 遮罩自定义显示
 - [x] 显示动画
 - [x] 自定义（背景色、前景色、字体、自动消失间隔秒、遮罩、动画类型、毛玻璃效果...），满足极大多数场景
+- [x] 显示完成回调（新增）
 
 ## 运行环境
 
@@ -43,6 +44,13 @@ target 'MyApp' do
     pod 'ZKProgressHUD'
 end
 ```
+
+如果使用 Swift 3.2 请使用*1.5*版本
+
+```ogdl
+pod 'ZKProgressHUD', '1.5'
+```
+
 ### 手动安装
 
 * 拖动 `ZKProgressHUD` 文件夹到您的项目
@@ -55,6 +63,22 @@ end
 ```swift
 import ZKProgressHUD
 ```
+
+### 显示完成回调*（新增）*
+
+```swift
+ZKProgressHUD.showMessage("开始使用 ZKProgressHUD 吧", completion: {
+    // 输入代码
+})
+```
+
+回调支持的函数有：
+
+* showImage
+* showMessage
+* showInfo
+* showSuccess
+* showError
 
 ### 显示加载
 
