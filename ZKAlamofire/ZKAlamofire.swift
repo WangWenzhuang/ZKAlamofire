@@ -64,7 +64,6 @@ public final class ZKAlamofire {
     //MARK: get 显示 HUD
     public static func getWithShowHUD(_ url: String, parameters: [String: Any]? = nil, headers: HTTPHeaders? = nil, success: ZKAlamofireRequestSuccess?, failure: ZKAlamofireRequestFailure? = nil) {
         request(url, parameters: parameters, success: success, failure: failure, method: .get, headers: headers, isShowHUD: true)
-        ZKAlamofire.post(<#T##url: String##String#>, parameters: <#T##[String : Any]?#>, success: <#T##ZKAlamofireRequestSuccess?##ZKAlamofireRequestSuccess?##(JSON) -> Void#>)
     }
     
     //MARK: post
