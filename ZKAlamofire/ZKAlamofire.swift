@@ -101,7 +101,7 @@ public final class ZKAlamofire {
         networkManager.startListening()
     }
     //MARK: 是否联网
-    private static var isReachable: Bool {
+    public static var isReachable: Bool {
         get {
             return isStartNetworkMonitoring ? networkManager.isReachable : true
         }
