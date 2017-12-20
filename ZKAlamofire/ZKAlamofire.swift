@@ -106,4 +106,17 @@ public final class ZKAlamofire {
             return isStartNetworkMonitoring ? networkManager.isReachable : true
         }
     }
+    //MARK: 是否WiFi
+    public static var isReachableWiFi: Bool {
+        get {
+            return networkManager.isReachableOnEthernetOrWiFi
+        }
+    }
+    //MARK: 是否WWAN
+    public static var isReachableWWAN: Bool {
+        get {
+            return networkManager.isReachableOnWWAN
+        }
+    }
+    
 }
