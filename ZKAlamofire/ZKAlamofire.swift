@@ -90,7 +90,7 @@ public final class ZKAlamofire {
     static private var isStartNetworkMonitoring = false
     static private let networkManager = NetworkReachabilityManager(host: "www.baidu.com")!
     //MARK: 网络监视
-    public static func startNetworkMonitoring(listener: ZKNetworkReachabilityListener?) {
+    public static func startNetworkMonitoring(listener: ZKNetworkReachabilityListener? = nil) {
         networkManager.listener = { status in
             isStartNetworkMonitoring = true
             var zkStatus = ZKNetworkReachabilityStatus.notReachable
