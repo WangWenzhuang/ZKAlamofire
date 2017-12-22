@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'ZKAlamofire'
-  s.version = '2.2'
+  s.version = '2.3'
   s.ios.deployment_target = '8.0'
   s.license = { :type => 'MIT', :file => 'LICENSE' }
   s.summary = '包含 HUD 的网络请求框架，Alamofire 二次封装'

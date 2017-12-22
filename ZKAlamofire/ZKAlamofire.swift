@@ -12,9 +12,15 @@ import SwiftyJSON
 import ZKProgressHUD
 import ZKStatusBarNotification
 
+public enum ZKNetworkReachabilityStatus {
+    case notReachable
+    case unknown
+    case ethernetOrWiFi
+    case wwan
+}
 public typealias ZKAlamofireRequestSuccess = (_ json: JSON) -> Void
 public typealias ZKAlamofireRequestFailure = () -> Void
-
+public typealias ZKNetworkReachabilityListener = (_ status: ZKNetworkReachabilityStatus) -> Void
 public final class ZKAlamofire {
     public static let requestErrorMsg = "连接服务器失败，请稍后再试"
     private static let notNetworkMsg = "没有网络连接，请稍后再试"
@@ -84,18 +90,22 @@ public final class ZKAlamofire {
     static private var isStartNetworkMonitoring = false
     static private let networkManager = NetworkReachabilityManager(host: "www.baidu.com")!
     //MARK: 网络监视
-    public static func startNetworkMonitoring() {
+    public static func startNetworkMonitoring(listener: ZKNetworkReachabilityListener?) {
         networkManager.listener = { status in
             isStartNetworkMonitoring = true
+            var zkStatus = ZKNetworkReachabilityStatus.notReachable
             switch status {
             case .notReachable:
-                ZKLog.debug("当前网络状态：notReachable")
+                zkStatus = ZKNetworkReachabilityStatus.notReachable
             case .unknown:
-                ZKLog.debug("当前网络状态：Unknown")
+                zkStatus = ZKNetworkReachabilityStatus.unknown
             case .reachable(.ethernetOrWiFi):
-                ZKLog.debug("当前网络状态：ReachableViaWiFi")
+                zkStatus = ZKNetworkReachabilityStatus.ethernetOrWiFi
             case .reachable(.wwan):
-                ZKLog.debug("当前网络状态：ReachableViaWWAN")
+                zkStatus = ZKNetworkReachabilityStatus.wwan
+            }
+            if listener != nil {
+                listener!(zkStatus)
             }
         }
         networkManager.startListening()
@@ -118,5 +128,5 @@ public final class ZKAlamofire {
             return networkManager.isReachableOnWWAN
         }
     }
-    
+
 }
