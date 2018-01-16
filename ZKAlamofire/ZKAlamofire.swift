@@ -25,13 +25,25 @@ public final class ZKAlamofire {
     public static let requestErrorMsg = "连接服务器失败，请稍后再试"
     private static let notNetworkMsg = "没有网络连接，请稍后再试"
     private static var globalHeaders: HTTPHeaders?
-    
-    private static func request(_ url: String, parameters: [String: Any]?, success: ZKAlamofireRequestSuccess?, failure: ZKAlamofireRequestFailure?, method: HTTPMethod, headers: HTTPHeaders? = nil, isShowHUD: Bool = false, encoding: ParameterEncoding =  URLEncoding.default) {
+    private static var defaultParameters: [String: String]?
+    private static func request(_ url: String, parameters: [String: String]?, success: ZKAlamofireRequestSuccess?, failure: ZKAlamofireRequestFailure?, method: HTTPMethod, headers: HTTPHeaders? = nil, isShowHUD: Bool = false, encoding: ParameterEncoding =  URLEncoding.default) {
         if ZKAlamofire.isReachable {
             if isShowHUD {
                 ZKProgressHUD.show()
             }
-            Alamofire.request(url, method: method, parameters: parameters,encoding: encoding, headers: headers ?? self.globalHeaders).responseJSON { (response) in
+            
+            var ps: [String: String] = [:]
+            if let p = parameters {
+                for key in p.keys {
+                    ps[key] = p[key]
+                }
+            }
+            if let dp = defaultParameters {
+                for key in dp.keys {
+                    ps[key] = dp[key]
+                }
+            }
+            Alamofire.request(url, method: method, parameters: ps, encoding: encoding, headers: headers ?? self.globalHeaders).responseJSON { (response) in
                 if isShowHUD {
                     ZKProgressHUD.dismiss()
                 }
@@ -58,33 +70,37 @@ public final class ZKAlamofire {
                 failure!()
             }
         }
-        
     }
     
     //MARK: get
-    public static func get(_ url: String, parameters: [String: Any]? = nil, headers: HTTPHeaders? = nil, success: ZKAlamofireRequestSuccess?, failure: ZKAlamofireRequestFailure? = nil) {
+    public static func get(_ url: String, parameters: [String: String]? = nil, headers: HTTPHeaders? = nil, success: ZKAlamofireRequestSuccess?, failure: ZKAlamofireRequestFailure? = nil) {
         request(url, parameters: parameters, success: success, failure: failure, method: .get, headers: headers, isShowHUD: false)
     }
   
     
     //MARK: get 显示 HUD
-    public static func getWithShowHUD(_ url: String, parameters: [String: Any]? = nil, headers: HTTPHeaders? = nil, success: ZKAlamofireRequestSuccess?, failure: ZKAlamofireRequestFailure? = nil) {
+    public static func getWithShowHUD(_ url: String, parameters: [String: String]? = nil, headers: HTTPHeaders? = nil, success: ZKAlamofireRequestSuccess?, failure: ZKAlamofireRequestFailure? = nil) {
         request(url, parameters: parameters, success: success, failure: failure, method: .get, headers: headers, isShowHUD: true)
     }
     
     //MARK: post
-    public static func post(_ url: String, parameters: [String: Any]?, headers: HTTPHeaders? = nil, encoding: ParameterEncoding = URLEncoding.default, success: ZKAlamofireRequestSuccess?, failure: ZKAlamofireRequestFailure? = nil) {
+    public static func post(_ url: String, parameters: [String: String]?, headers: HTTPHeaders? = nil, encoding: ParameterEncoding = URLEncoding.default, success: ZKAlamofireRequestSuccess?, failure: ZKAlamofireRequestFailure? = nil) {
         request(url, parameters: parameters, success: success, failure: failure, method: .post, headers: headers, isShowHUD: false, encoding: encoding)
     }
     
     //MARK: post 显示 HUD
-    public static func postWithShowHUD(_ url: String, parameters: [String: Any]?, headers: HTTPHeaders? = nil, encoding: ParameterEncoding = URLEncoding.default, success: ZKAlamofireRequestSuccess?, failure: ZKAlamofireRequestFailure? = nil) {
+    public static func postWithShowHUD(_ url: String, parameters: [String: String]?, headers: HTTPHeaders? = nil, encoding: ParameterEncoding = URLEncoding.default, success: ZKAlamofireRequestSuccess?, failure: ZKAlamofireRequestFailure? = nil) {
         request(url, parameters: parameters, success: success, failure: failure, method: .post, headers: headers, isShowHUD: true, encoding: encoding)
     }
     
     //MARK: 设置全局 headers
     public static func setGlobalHeaders(_ headers: HTTPHeaders?) {
         self.globalHeaders = headers
+    }
+    
+    //MARK: 设置默认参数
+    public static func setDefaultParameters(_ parameters: [String: String]?) {
+        self.defaultParameters = parameters
     }
     
     static private var isStartNetworkMonitoring = false
@@ -128,5 +144,4 @@ public final class ZKAlamofire {
             return networkManager.isReachableOnWWAN
         }
     }
-
 }

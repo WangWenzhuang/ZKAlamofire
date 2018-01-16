@@ -4,10 +4,14 @@
 
 ![license](https://img.shields.io/badge/license-MIT-brightgreen.svg)
 ![build](https://travis-ci.org/WangWenzhuang/ZKAlamofir.svg?branch=master)
-![CocoaPods](https://img.shields.io/badge/pod-v2.3.1-brightgreen.svg)
+![CocoaPods](https://img.shields.io/badge/pod-v2.3.2-brightgreen.svg)
 ![platform](https://img.shields.io/badge/platform-iOS-brightgreen.svg)
 
 将 [Alamofire](https://github.com/Alamofire/Alamofire)、[ZKProgressHUD](https://github.com/WangWenzhuang/ZKProgressHUD)、[SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)、[ZKStatusBarNotification](https://github.com/WangWenzhuang/ZKStatusBarNotification) 封装，简化网络请求代码
+
+## 近期更新
+
+> 增加 **setDefaultParameters** 方法，用于设置所有请求默认参数，此默认参数会追加到请求参数中
 
 ## 实现功能
 
@@ -15,6 +19,7 @@
 - [x] post、get
 - [x] HUD 方式 post、get
 - [x] 设置全局 header
+- [x] 设置默认参数
 
 ## 运行环境
 
@@ -97,6 +102,12 @@ ZKAlamofire.postWithShowHUD("url", parameters: nil, success: (json) in
 
 ```swift
 ZKAlamofire.setGlobalHeaders(["key": "value"])
+```
+
+### 设置默认参数
+
+```swift
+ZKAlamofire.setDefaultParameters(["key": "value"])
 ```
 
 ### 自定义 HUD 样式
