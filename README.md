@@ -4,7 +4,7 @@
 
 ![license](https://img.shields.io/badge/license-MIT-brightgreen.svg)
 ![build](https://travis-ci.org/WangWenzhuang/ZKAlamofir.svg?branch=master)
-![CocoaPods](https://img.shields.io/badge/pod-v2.3.2-brightgreen.svg)
+![CocoaPods](https://img.shields.io/badge/pod-v2.3.3-brightgreen.svg)
 ![platform](https://img.shields.io/badge/platform-iOS-brightgreen.svg)
 
 将 [Alamofire](https://github.com/Alamofire/Alamofire)、[ZKProgressHUD](https://github.com/WangWenzhuang/ZKProgressHUD)、[SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)、[ZKStatusBarNotification](https://github.com/WangWenzhuang/ZKStatusBarNotification) 封装，简化网络请求代码
