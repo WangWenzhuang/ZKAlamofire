@@ -3,7 +3,7 @@
 # ZKAlamofire
 
 ![license](https://img.shields.io/badge/license-MIT-brightgreen.svg)
-![build](https://travis-ci.org/WangWenzhuang/ZKAlamofir.svg?branch=master)
+![build](https://www.travis-ci.org/WangWenzhuang/ZKAlamofire.svg?branch=master)
 ![CocoaPods](https://img.shields.io/badge/pod-v2.3.3-brightgreen.svg)
 ![platform](https://img.shields.io/badge/platform-iOS-brightgreen.svg)
 
