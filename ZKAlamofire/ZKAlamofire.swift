@@ -6,7 +6,6 @@
 //  Copyright © 2017年 王文壮. All rights reserved.
 //
 
-import ZKLog
 import Alamofire
 import SwiftyJSON
 import ZKProgressHUD
@@ -51,11 +50,11 @@ public final class ZKAlamofire {
                 case .success(let value):
                     let json = JSON(value)
                     if success != nil {
-                        ZKLog.debug((response.request!.url?.absoluteString)! + "\t******\tresponse:\r\(json)")
+                        print((response.request!.url?.absoluteString)! + "\t******\tresponse:\r\(json)")
                         success!(json)
                     }
                 case .failure(let error):
-                    ZKLog.error((response.request!.url?.absoluteString)! + "\t******\terror:\r\(error)")
+                    print((response.request!.url?.absoluteString)! + "\t******\terror:\r\(error)")
                     if isShowHUD {
                         ZKProgressHUD.showError(requestErrorMsg)
                     }

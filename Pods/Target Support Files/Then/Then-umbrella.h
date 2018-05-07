@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double ZKLogVersionNumber;
-FOUNDATION_EXPORT const unsigned char ZKLogVersionString[];
+FOUNDATION_EXPORT double ThenVersionNumber;
+FOUNDATION_EXPORT const unsigned char ThenVersionString[];
 
