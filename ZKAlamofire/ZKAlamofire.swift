@@ -30,7 +30,7 @@ public final class ZKAlamofire {
             if isShowHUD {
                 ZKProgressHUD.show()
             }
-            
+
             var ps: [String: Any] = [:]
             if let p = parameters {
                 for key in p.keys {
@@ -70,41 +70,40 @@ public final class ZKAlamofire {
             }
         }
     }
-    
-    //MARK: get
+
+    // MARK: get
     public static func get(_ url: String, parameters: [String: Any]? = nil, headers: HTTPHeaders? = nil, success: ZKAlamofireRequestSuccess?, failure: ZKAlamofireRequestFailure? = nil) {
         request(url, parameters: parameters, success: success, failure: failure, method: .get, headers: headers, isShowHUD: false)
     }
-  
-    
-    //MARK: get 显示 HUD
+
+    // MARK: get 显示 HUD
     public static func getWithShowHUD(_ url: String, parameters: [String: Any]? = nil, headers: HTTPHeaders? = nil, success: ZKAlamofireRequestSuccess?, failure: ZKAlamofireRequestFailure? = nil) {
         request(url, parameters: parameters, success: success, failure: failure, method: .get, headers: headers, isShowHUD: true)
     }
-    
-    //MARK: post
+
+    // MARK: post
     public static func post(_ url: String, parameters: [String: Any]?, headers: HTTPHeaders? = nil, encoding: ParameterEncoding = URLEncoding.default, success: ZKAlamofireRequestSuccess?, failure: ZKAlamofireRequestFailure? = nil) {
         request(url, parameters: parameters, success: success, failure: failure, method: .post, headers: headers, isShowHUD: false, encoding: encoding)
     }
-    
-    //MARK: post 显示 HUD
+
+    // MARK: post 显示 HUD
     public static func postWithShowHUD(_ url: String, parameters: [String: Any]?, headers: HTTPHeaders? = nil, encoding: ParameterEncoding = URLEncoding.default, success: ZKAlamofireRequestSuccess?, failure: ZKAlamofireRequestFailure? = nil) {
         request(url, parameters: parameters, success: success, failure: failure, method: .post, headers: headers, isShowHUD: true, encoding: encoding)
     }
-    
-    //MARK: 设置全局 headers
+
+    // MARK: 设置全局 headers
     public static func setGlobalHeaders(_ headers: HTTPHeaders?) {
         self.globalHeaders = headers
     }
-    
-    //MARK: 设置默认参数
+
+    // MARK: 设置默认参数
     public static func setDefaultParameters(_ parameters: [String: Any]?) {
         self.defaultParameters = parameters
     }
-    
+
     static private var isStartNetworkMonitoring = false
     static private let networkManager = NetworkReachabilityManager(host: "www.baidu.com")!
-    //MARK: 网络监视
+    // MARK: 网络监视
     public static func startNetworkMonitoring(listener: ZKNetworkReachabilityListener? = nil) {
         networkManager.listener = { status in
             isStartNetworkMonitoring = true
@@ -125,19 +124,19 @@ public final class ZKAlamofire {
         }
         networkManager.startListening()
     }
-    //MARK: 是否联网
+    // MARK: 是否联网
     public static var isReachable: Bool {
         get {
             return isStartNetworkMonitoring ? networkManager.isReachable : true
         }
     }
-    //MARK: 是否WiFi
+    // MARK: 是否WiFi
     public static var isReachableWiFi: Bool {
         get {
             return networkManager.isReachableOnEthernetOrWiFi
         }
     }
-    //MARK: 是否WWAN
+    // MARK: 是否WWAN
     public static var isReachableWWAN: Bool {
         get {
             return networkManager.isReachableOnWWAN
