@@ -7,5 +7,5 @@ target 'ZKAlamofire' do
     pod 'Alamofire'
     pod 'SwiftyJSON'
     pod 'ZKProgressHUD'
-    pod 'ZKStatusBarNotification'
+    pod 'JDStatusBarNotification'
 end

@@ -9,7 +9,7 @@
 import Alamofire
 import SwiftyJSON
 import ZKProgressHUD
-import ZKStatusBarNotification
+import JDStatusBarNotification
 
 public enum ZKNetworkReachabilityStatus {
     case notReachable
@@ -64,7 +64,7 @@ public final class ZKAlamofire {
                 }
             }
         } else {
-            ZKStatusBarNotification.showError(notNetworkMsg)
+            JDStatusBarNotification.show(withStatus: notNetworkMsg, dismissAfter: 1.5, styleName: JDStatusBarStyleError)
             if failure != nil {
                 failure!()
             }
